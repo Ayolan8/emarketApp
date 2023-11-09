@@ -1,0 +1,14 @@
+{% extends 'base/master.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+
+    <h2> Start new conversation here!!</h2>
+    <form method="post" action=".">
+        {% csrf_token %}
+        {{form.as_pl}}
+        <button type="submit">Send Message</button>
+    </form>
+
+{% endblock %}

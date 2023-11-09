@@ -1,0 +1,53 @@
+{% extends 'base/master.html' %}
+{% block title %} Buy it here {% endblock %}
+{% block content %}
+
+<div style="color: white; background-color: black; text-align: center; height: 200px; display: flex; justify-content: center; align-items: center;">
+    <div>
+        <!-- header -->
+        <h1>Shop in Style</h1>
+        <p><i>Find your choice</i></p>
+    </div>
+</div>
+
+<!-- the current user -->
+<h2 style="color: blue;">{{user}}</h2>
+<br>
+
+    <!-- product card -->
+    <div class="mainDiv">
+
+        <!-- looping through the items in the database -->
+        {% for x in data %}
+        <div class="product-card">
+             <h3>{{ x.title }}</h3> <small> - {{ x.created_at}}</small>
+             <!-- link to the detail page -->
+             <a href="{% url 'detail' x.id %}"><img src="{{ x.photo.url }}" alt="{{x.title}}"></a>
+            <div class="desc">
+                <h3><strong>{{x.price}}</strong></h3>
+                      
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+   
+
+
+    <br><br>
+
+    
+        <div class="category-container">
+            {% for category in categories %}
+            <div>
+            <div class="category-list">
+               <h4> {{category.name}}</h4>
+               <h1>{{category.data.count}}</h1>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+        <br>
+        
+
+   
+{% endblock %}

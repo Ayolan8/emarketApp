@@ -1,0 +1,17 @@
+{% extends 'base/master.html' %}
+
+{% block title %} deleting {{item.title }} {% endblock %}
+
+{% block content %}
+
+<div class="centre-item">
+    <div>
+        <h1>Are you sure you want to delete  {{ item.title }} ?</h1>
+        <br>
+        <img src="{{ item.photo.url }}" alt="{{ item.title}}">
+        <button type="submit" style="background-color: green; padding: 6px; border: none; border-radius: 4px; cursor: pointer;"><a href="{% url 'detail' item.id %}" style="text-decoration: none; color: white;">Back</a></button>  
+        <button type="submit" style="background-color: red; padding: 6px; border: none; border-radius: 4px; cursor: pointer;"><a href="{% url 'delete' item.id %}" style="text-decoration: none; color: white;">Delete</a></button>  
+    </div>
+</div>
+
+{% endblock %}

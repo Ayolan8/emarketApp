@@ -1,0 +1,19 @@
+{% extends 'base/master.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+
+{% block content %}
+<div class="container">
+<br>    
+<h2>Edit Item</h2>
+<br>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            {{ form.as_p }}
+        <br>
+        <input type="submit" value="Update" class="btn btn-success" style="color: white; width: 200px;">
+    </form>
+</div>
+
+{% endblock %}

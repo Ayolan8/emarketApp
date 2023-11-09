@@ -1,0 +1,44 @@
+{% extends 'base/master.html' %}
+
+{% block title %} {{data}} {% endblock %}
+
+{% block content %}
+<br>
+<br>
+
+
+    <div class="wrapper">
+        <div>
+            <img src="{{ data.photo.url }}">    
+        </div>
+            <div class="product-details"><h2>{{data.title}}</h2>
+                    <p>{{data.description}}</p>
+                    <h3>{{data.price}}</h3>
+                   
+                   
+                   {% if request.user == data.created_by %}
+                    <button type="submit" style="background-color: blue; padding: 6px; border: none; border-radius: 4px; cursor: pointer;"><a href="{% url 'editform' data.id %}"  style="text-decoration: none; color: white;">Edit</a></button>
+                    <button type="submit" style="background-color: red; padding: 6px; border: none; border-radius: 4px; cursor: pointer;"><a href="{% url 'warning' data.id %}" style="text-decoration: none; color: white;">Delete</a></button>  
+                    {% else %}
+                    <button type="submit" style="background-color: green; padding: 6px; border: none; border-radius: 4px; cursor: pointer;"><a href="#"  style="text-decoration: none; color: white;">Contact Seller</a></button>
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="mainDiv">
+        {% for data in related_data %}
+        <div class="product-card">
+            <a href="{% url 'detail' data.id %}"> <img src="{{ data.photo.url }}" alt="{{data.title}}"></a>
+            <div class="desc">
+                <p>{{data.price}}</p>     
+            </div>
+        
+        </div>
+        {% endfor %}
+    </div>
+    
+
+{% endblock%}

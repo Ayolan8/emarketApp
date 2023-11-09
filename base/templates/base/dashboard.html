@@ -1,0 +1,35 @@
+{% extends 'base/master.html' %}
+{% block title %} {{request.user}}'s Dashboard {% endblock %}
+{% block content %}
+
+<br>
+<a href="{% url 'home' %}" style="padding-left: 20px; text-decoration: none;"><button>&lArr;</button></a>
+<div class="centre-item">
+    <div>
+        <h2>{{user}}'s Dashboard</h2>
+
+        <br>
+        <!-- button to add new item -->
+        <button class="btn btn-success"><a href="{% url 'addform' %}" style="color: white; text-decoration: none;">Add Item</a></button>
+    </div>
+</div>
+<br>
+<br>
+
+    <div class="mainDiv">
+        <!-- loop through items in the dashboard -->
+        {% for item in items %}
+        <div class="product-card">
+            <h3>{{ item.title }}</h3> <small> - {{ item.created_at}}</small>
+            <!-- link to read items detail, edit or delete if user is the creator -->
+            <a href="{% url 'detail' item.id %}"> <img src="{{ item.photo.url }}" alt="{{item.title}}"></a>
+            <div class="desc">
+                
+                <h3><strong>{{item.price}}</strong></h3>
+                     
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% endblock %}
